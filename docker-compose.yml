@@ -1,35 +1,37 @@
 version: '3.9'
 services:
-  nginx:
-    container_name: nginx
-    build: 
+  # nginx:
+  #   container_name: nginx
+  #   build: 
+  #     context: .
+  #     dockerfile: nginx.dockerfile
+  #   ports: 
+  #     - '80:80'
+  #     - '443:443'
+  #   volumes: 
+  #     - ./src:/var/www/html
+  #   networks:
+  #     - laravel
+  #   depends_on:
+  #     - php
+  #     - mysql
+  
+  apache:
+    container_name: apache
+    build:
       context: .
-      dockerfile: nginx.dockerfile
-    ports: 
-      - '80:80'
-      - '443:443'
-    volumes: 
+      dockerfile: apache.dockerfile
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
       - ./src:/var/www/html
     networks:
       - laravel
     depends_on:
       - php
       - mysql
-  
-  #    apache:
-  #        build:
-  #            context: .
-  #            dockerfile: apache.dockerfile
-  #        container_name: apache
-  #        ports:
-  #            - 80:80
-  #            - 443:443
-  #        volumes:
-  #            - ./src:/var/www/html
-  #        networks:
-  #            - laravel
 
-  
   php:
     container_name: php
     build: 
